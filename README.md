@@ -106,6 +106,9 @@ Support, updates, bugfixes, features, etc. will be limited, but I will help wher
 ---
 # Changelog:
 
+**Version 1.3.2-b1**
+- Added "debug loggers". This allows logging of integration information for debugging when "Enable debug logging" is turned on for the integration
+
 **Version 1.3.1**
 - Fixed a bug where a load error ocurred if you didn't have any "triggers" (Bumped API dependency as this was fixed in the API)
 
