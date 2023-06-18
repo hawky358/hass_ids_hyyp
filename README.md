@@ -49,7 +49,7 @@ This allows arming and disarming of partitions by simulating a control panel.
 ![panel](images/panel.gif)
 
 
-Example of a simple "panel" which has for away arm
+Example of a simple "panel" for away arm
 
 ![ex1](images/awayexample.gif)
 
@@ -107,10 +107,10 @@ Support, updates, bugfixes, features, etc. will be limited, but I will help wher
 # Changelog:
 
 **Version 1.3.2-b1**
-- Added "debug loggers". This allows logging of integration information for debugging when "Enable debug logging" is turned on for the integration
+- Added "debug loggers". This allows logging of certain integration information for debugging when "Enable debug logging" is turned on for the integration
 
 **Version 1.3.1**
-- Fixed a bug where a load error ocurred if you didn't have any "triggers" (Bumped API dependency as this was fixed in the API)
+- Fixed a bug where stay profile buttons wouldn't load if you didn't have any "triggers" (Bumped API dependency as this was fixed in the API)
 
 **Version 1.3.0**
 - Added Binary sensor which shows which zone triggered the alarm.
