@@ -6,7 +6,7 @@ IDS Hyyp integration for Home Assistant
 
 ![Installs](https://img.shields.io/badge/dynamic/json?color=41BDF5&logo=home-assistant&label=integration%20usage&suffix=%20installs&cacheSeconds=86400&url=https://analytics.home-assistant.io/custom_integrations.json&query=$.ids_hyyp.total)
 
-There is a **[Discord](https://discord.gg/)** server for general discussions or help. (Down for now)
+There is a **[Discord](https://discord.gg/)** server for general discussions or help. **(Down for now)**
 
 # TOC
 - [Features](#features)
@@ -105,6 +105,9 @@ Support, updates, bugfixes, features, etc. will be limited, but I will help wher
 
 ---
 # Changelog:
+
+**Version 1.3.1**
+- Fixed a bug where a load error ocurred if you didn't have any "triggers" (Bumped API dependency as this was fixed in the API)
 
 **Version 1.3.0**
 - Added Binary sensor which shows which zone triggered the alarm.
