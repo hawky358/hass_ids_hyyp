@@ -31,6 +31,7 @@ async def async_setup_entry(
             HyypAutomationButton(coordinator, site_id, trigger_id, arm_code)
             for site_id in coordinator.data
             for trigger_id in coordinator.data[site_id]["triggers"]
+
         ]
     )
     
@@ -40,6 +41,7 @@ async def async_setup_entry(
             for site_id in coordinator.data
             for partition_id in coordinator.data[site_id]["partitions"]
             for stay_profile_id in coordinator.data[site_id]["partitions"][partition_id]["stayProfileIds"]
+
         ]
     )
 

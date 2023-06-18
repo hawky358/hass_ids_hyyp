@@ -32,9 +32,17 @@ class HyypDataUpdateCoordinator(DataUpdateCoordinator):
         """Fetch data from IDS Hyyp."""
         try:
             async with timeout(self._api_timeout):
-                return await self.hass.async_add_executor_job(
+                
+                infos = await self.hass.async_add_executor_job(
                     self.hyyp_client.load_alarm_infos
                 )
+                _LOGGER.debug("INFOS:")
+                _LOGGER.debug("-----")
+                _LOGGER.debug(infos)
+                _LOGGER.debug("-----")
+                _LOGGER.debug("</INFOS>")
+                return infos
+                
 
         except (InvalidURL, HTTPError, HyypApiError) as error:
             raise UpdateFailed(f"Invalid response from API: {error}") from error
