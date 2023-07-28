@@ -33,7 +33,7 @@ class HyypDataUpdateCoordinator(DataUpdateCoordinator):
         try:
             async with timeout(self._api_timeout):
                 return await self.hass.async_add_executor_job(
-                    self.hyyp_client.load_alarm_infos
+                    self.hyyp_client.get_debug_infos
                 )
 
         except (InvalidURL, HTTPError, HyypApiError) as error:
