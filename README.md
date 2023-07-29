@@ -18,15 +18,15 @@ How to use
 
 
 **STEP 3**
-![Alt text](images/en.png)
+![Alt text](images/enable.png)
 
 **STEP 4**
-![Alt text](images/del.png)
+![Alt text](images/delete.png)
 
 
 **STEP 5**
-![Alt text](images/add.png)
+![Alt text](images/addentry.png)
 
 
 **STEP 7**
-![Alt text](images/dis.png)
+![Alt text](images/disable.png)
