@@ -18,7 +18,7 @@ How to use
 
 
 **STEP 3**
-![Alt text](images/En.png)
+![Alt text](images/en.png)
 
 **STEP 4**
 ![Alt text](images/del.png)
@@ -26,6 +26,7 @@ How to use
 
 **STEP 5**
 ![Alt text](images/add.png)
+
 
 
 **STEP 7**
