@@ -198,6 +198,10 @@ Support, updates, bugfixes, features, etc. will be limited, but I will help wher
 # Changelog:
 
 
+**Version 1.8.5**
+- Fixed an issue with preventing access to the configuration options caused by deprecation in HASS 2025.12
+
+
 **Version 1.8.4**
 - Changed the way certain exceptions are shown and logged. e.g. When a bypass or arm fails, the full stack trace is no longer dumped, but an error is logged. This was done since IDS servers sometimes give "FAILURES" when the action has actually succeeded. It is also showing a "friendlier" message for users to understand.
 - Fixed a protobuf version error in HASS 2025.6.0
