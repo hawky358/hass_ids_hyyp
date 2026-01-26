@@ -71,7 +71,7 @@ class HyypConfigFlow(ConfigFlow, domain=DOMAIN):
     @callback
     def async_get_options_flow(config_entry: ConfigEntry) -> HyypOptionsFlowHandler:
         """Get the options flow for this handler."""
-        return HyypOptionsFlowHandler(config_entry)
+        return HyypOptionsFlowHandler()
 
     async def async_step_user(
         self, user_input: dict[str, Any] | None = None
