@@ -146,11 +146,6 @@ class HyypConfigFlow(ConfigFlow, domain=DOMAIN):
 class HyypOptionsFlowHandler(OptionsFlow):
     """Handle Hyyp client options."""
 
-    def __init__(self, config_entry: ConfigEntry) -> None:
-        """Initialize options flow."""
-        self.config_entry = config_entry
-        self.options = dict(config_entry.options)
-
     async def async_step_init(
         self, user_input: dict[str, Any] | None = None
     ) -> FlowResult:
@@ -164,8 +159,8 @@ class HyypOptionsFlowHandler(OptionsFlow):
                 vol.Optional(ATTR_ARM_CODE): str,
                 vol.Optional(ATTR_BYPASS_CODE): str,                   
                 vol.Optional(
-                    POLLING_TIME, 
-                    default=self.options.get(POLLING_TIME, str(DEFAULT_POLL_TIME))
+                    POLLING_TIME,
+                    default=self.config_entry.options.get(POLLING_TIME, str(DEFAULT_POLL_TIME))
                     ): 
                         selector({
                             "select": {
