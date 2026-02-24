@@ -51,7 +51,14 @@ async def async_setup_entry(
 
         ]
     )
-
+    
+    async_add_entities(
+        [
+            HyypPanicButton(coordinator, site_id, arm_code)
+            for site_id in coordinator.data
+        ]
+    )  
+    
     platform = entity_platform.async_get_current_platform()
 
     platform.async_register_entity_service(
@@ -82,7 +89,39 @@ class HyypRefreshButton(HyypSiteEntity, ButtonEntity):
     async def async_press(self) -> None:
         """Press the button."""
         await self.coordinator.async_request_refresh()
-    
+
+class HyypPanicButton(HyypSiteEntity, ButtonEntity):
+    """Representation of a IDS Hyyp entity button."""
+
+    def __init__(
+        self,
+        coordinator: HyypDataUpdateCoordinator,
+        site_id: int,
+        arm_code: str | None,
+        ) -> None:
+        """Initialize the button."""
+        super().__init__(coordinator, site_id)
+        self._attr_name = f"{self.data['name']} Panic button"
+        self._attr_unique_id = f"{self._site_id}_Panic_button"
+
+        self._arm_code = arm_code
+   
+    async def async_press(self) -> None:
+        """Press the button."""
+        try:
+            update_ok = await self.hass.async_add_executor_job(
+                self.coordinator.hyyp_client.trigger_alarm,
+                self._site_id,
+                self._arm_code,
+            )
+
+        except (HTTPError, HyypApiError) as err:
+            raise HyypApiError(f"Failed to call panic  {self._attr_name}") from err
+
+        await self.coordinator.async_request_refresh()
+        if (update_ok["status"] != "SUCCESS"):
+            raise ServiceValidationError("Could not panic, please check pin code, refresh and try again.")
+
     
 class HyypStayArmButton(HyypPartitionEntity, ButtonEntity):
     """Representation of a IDS Hyyp stay arm entity button. This is to allow for multiple stay arm profiles"""

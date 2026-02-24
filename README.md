@@ -92,6 +92,8 @@ IDS Hyyp integration for Home Assistant
     *"Automations" is the term used in the IDS app to activate programmable outputs on the panel e.g. to open your gate or garage door. The IDS app also calls it "Triggers"*
     - Creates a `button.[site_name]_[automation_name]` button entity. This entity pushes the "automation" button similar to pushing the button in the IDS app.
 
+- Panic Button
+    - Create a `button.[site]_panic_button` button entity. This is a panic button.
 
 - `sensor.[site_id]_arm_failure_cause` shows the reason for a failure (arm, disarm, bypass, etc.). This information is received via FCM from IDS servers.
     - `sensor.[site_id]_arm_failure_cause` returns a json encoded string in the following format:
@@ -196,6 +198,9 @@ Support, updates, bugfixes, features, etc. will be limited, but I will help wher
 
 ---
 # Changelog:
+**Version 1.9.0-b1**
+- Added Panic button
+    - `button.[site]_panic_button`
 
 
 **Version 1.8.5**
