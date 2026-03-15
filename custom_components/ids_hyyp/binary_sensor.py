@@ -8,6 +8,7 @@ from homeassistant.components.binary_sensor import (
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
+from homeassistant.helpers.device_registry import DeviceInfo
 
 from .const import DATA_COORDINATOR, DOMAIN
 from .coordinator import HyypDataUpdateCoordinator
@@ -39,6 +40,20 @@ async def async_setup_entry(
             if value is not None        
         ]
     )
+    
+    
+    async_add_entities(
+        [
+            HyypZoneSensor(coordinator, site_id, partition_id, zone_id)
+            for site_id in coordinator.data
+            for partition_id in coordinator.data[site_id]["partitions"]
+            for zone_id in coordinator.data[site_id]["partitions"][partition_id][
+                "zones"
+            ]
+        ]
+    )
+    
+    
    
 class HyypSensor(HyypSiteEntity, BinarySensorEntity):
     """Representation of a IDS Hyyp sensor."""
@@ -63,8 +78,30 @@ class HyypSensor(HyypSiteEntity, BinarySensorEntity):
         """Return the state of the binary sensor."""
         return bool(self.data[self._sensor_name])
 
+class HyypSensor(HyypSiteEntity, BinarySensorEntity):
+    """Representation of a IDS Hyyp sensor."""
 
-class HyypZoneTriggerSensor(HyypPartitionEntity, BinarySensorEntity):
+    coordinator: HyypDataUpdateCoordinator
+
+    def __init__(
+        self,
+        coordinator: HyypDataUpdateCoordinator,
+        site_id: int,
+        binary_sensor: str,
+    ) -> None:
+        """Initialize the sensor."""
+        super().__init__(coordinator, site_id)
+        self._sensor_name = binary_sensor
+        self._attr_name = f"{self.data['name']} {binary_sensor.title()}"
+        self._attr_unique_id = f"{self._site_id}_{binary_sensor}"
+        self.entity_description = BINARY_SENSOR_TYPES[binary_sensor]
+
+    @property
+    def is_on(self) -> bool:
+        """Return the state of the binary sensor."""
+        return bool(self.data[self._sensor_name])
+
+class HyypZoneSensor(HyypPartitionEntity, BinarySensorEntity):
     """Representation of a IDS Hyyp sensor."""
 
     coordinator: HyypDataUpdateCoordinator
@@ -78,13 +115,36 @@ class HyypZoneTriggerSensor(HyypPartitionEntity, BinarySensorEntity):
     ) -> None:
         """Initialize the sensor."""
         super().__init__(coordinator, site_id, partition_id)
-        self._sensor_name = f"{self.partition_data['zones'][zone_id]['name'].title()} trigger"
+        self._sensor_name = f"{self.partition_data['zones'][zone_id]['name'].title()}"
         self._zone_id = zone_id
-        self._attr_name = f"{self.partition_data['zones'][zone_id]['name'].title()} trigger"
-        self._attr_unique_id = f"{self._site_id}_{partition_id}_{zone_id}_trigger"
+        self._attr_unique_id = f"{self._site_id}_{partition_id}_{zone_id}_status"
+        self._attr_name = self._sensor_name + " status"
       
-   
     @property
     def is_on(self) -> bool:
         """Return the state of the binary sensor."""
-        return bool(self.partition_data["zones"][self._zone_id]["triggered"])
+        zone = self.partition_data.get("zones", {}).get(self._zone_id, {})
+        val = zone.get("openviolated")
+        
+        if val is None:
+            return None
+        return bool(val)
+
+
+    @property
+    def extra_state_attributes(self):
+        
+        tampered = False
+        triggered = False
+        stay_bypassed = False
+        if "tampered"  in self.partition_data["zones"][self._zone_id]:
+            tampered = bool(self.partition_data["zones"][self._zone_id]["tampered"])
+        if "stay_bypassed" in self.partition_data["zones"][self._zone_id]:
+            stay_bypassed = bool(self.partition_data["zones"][self._zone_id]["stay_bypassed"])
+        if "triggered" in self.partition_data["zones"][self._zone_id]:
+            triggered = bool(self.partition_data["zones"][self._zone_id]["triggered"])
+        state = {"tampered" : tampered,
+                 "triggered" : triggered,
+                 "stay_bypassed" : stay_bypassed,
+                 }
+        return state

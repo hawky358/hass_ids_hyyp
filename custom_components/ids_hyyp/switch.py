@@ -12,6 +12,7 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers import entity_platform
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.exceptions import ServiceValidationError
+from homeassistant.helpers.device_registry import DeviceInfo
 
 from .const import ATTR_BYPASS_CODE, DATA_COORDINATOR, DOMAIN, SERVICE_BYPASS_ZONE
 from .coordinator import HyypDataUpdateCoordinator
@@ -64,13 +65,15 @@ class HyypSwitch(HyypPartitionEntity, SwitchEntity):
         super().__init__(coordinator, site_id, partition_id)
         self._bypass_code = bypass_code
         self._zone_id = zone_id
-        self._attr_name = f"{self.partition_data['zones'][zone_id]['name'].title()}"
+        self._sensor_name = f"{self.partition_data['zones'][zone_id]['name'].title()}"
+        self._attr_name = self._sensor_name
         self._attr_unique_id = f"{self._site_id}_{partition_id}_{zone_id}"
 
     @property
     def available(self) -> bool:
         """Check if device is reporting online from api."""
         return bool(self.data["isOnline"])
+
 
     @property
     def is_on(self) -> bool:
@@ -99,6 +102,8 @@ class HyypSwitch(HyypPartitionEntity, SwitchEntity):
                  }
         return state
     
+
+
 
     async def async_turn_on(self, **kwargs: Any) -> None:
         """Turn the switch entity on."""
