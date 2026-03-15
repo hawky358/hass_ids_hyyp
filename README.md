@@ -83,7 +83,11 @@ IDS Hyyp integration for Home Assistant
             - *It's recommended you use the `sensor.[site]_ids_push_notifications` if you need "live" data*   
             - *You should handle any home assistant triggers with automations* 
             - *Note multiple sensors can trigger the alarm at the same time if it's armed*
-     
+
+- Creates a `binary_sensor.[zone__name]_status` which shows the current status of a specific zone.
+    - This `binary_sensor` is effectively a duplicate of the `switch.[zone_name]` - `violated` attribute. As a `binary_sensor` the sensor can be changed in the UI to a `door` or `motion` or `window` etc. which gives variations of `true` / `false`, e.g. `open` / `closed`
+    - The same limitations as the `violated` attribute is applicable to this sensor.
+
 - Multiple stay profiles.  
     *Note that the Home Assistant built in "Alarm Control Panel" entity does not support this, so you will have to create buttons / entity cards etc. to use this feature.*
     - Creates a `button.[site_name]_[partition_name]_[stay_profile_name]` button entity which can be used to arm a specific stay profile. You can also switch between stay profiles while armed in a stay profile.
@@ -205,6 +209,13 @@ Support, updates, bugfixes, features, etc. will be limited, but I will help wher
 
 ---
 # Changelog:
+
+**Version 1.10-b2**
+- Added a new `binary_sensor.[zone__name]_status`
+    - This `binary_sensor` is effectively a duplicate of the `switch.[zone_name]` - `violated` attribute. As a `binary_sensor` the sensor can be changed in the UI to a `door` or `motion` or `window` etc. which gives variations of `true` / `false`, e.g. `open` / `closed`
+
+
+
 **Version 1.9.0**
 - Added Panic button
     - `button.[site]_panic_button`
