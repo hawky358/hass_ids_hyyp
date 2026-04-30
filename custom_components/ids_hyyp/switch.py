@@ -87,6 +87,7 @@ class HyypSwitch(HyypPartitionEntity, SwitchEntity):
         tampered = False
         triggered = False
         stay_bypassed = False
+        short_name = self._sensor_name
         if "openviolated" in self.partition_data["zones"][self._zone_id]:
             violated = bool(self.partition_data["zones"][self._zone_id]["openviolated"])
         if "tampered"  in self.partition_data["zones"][self._zone_id]:
@@ -99,6 +100,7 @@ class HyypSwitch(HyypPartitionEntity, SwitchEntity):
                  "tampered" : tampered,
                  "triggered" : triggered,
                  "stay_bypassed" : stay_bypassed,
+                 "short_name" : short_name
                  }
         return state
     
