@@ -1,7 +1,7 @@
 {
   "domain": "ids_hyyp",
   "name": "IDS Hyyp (hawkMod)",
-  "version": "1.10-b3",
+  "version": "1.10",
   "documentation": "https://github.com/hawky358/hass_ids_hyyp",
   "integration_type": "hub",
   "codeowners": ["@hawky358"],

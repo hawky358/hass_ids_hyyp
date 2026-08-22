@@ -210,14 +210,11 @@ Support, updates, bugfixes, features, etc. will be limited, but I will help wher
 ---
 # Changelog:
 
-**Version 1.10-b3**
-- Added attribute `short_name` to `switch.[zone_name]`, which only shows the zone name. After a recent update to Home assistant, it now automatically adds the site name to the start of the friendly name which may not be wanted. The `short_name` is just the zone name.
 
-**Version 1.10-b2**
+**Version 1.10**
+- Added attribute `short_name` to `switch.[zone_name]`, which only shows the zone name. After a recent update to Home assistant, it now automatically adds the site name to the start of the friendly name which may not be wanted. The `short_name` is just the zone name.
 - Added a new `binary_sensor.[zone__name]_status`
     - This `binary_sensor` is effectively a duplicate of the `switch.[zone_name]` - `violated` attribute. As a `binary_sensor` the sensor can be changed in the UI to a `door` or `motion` or `window` etc. which gives variations of `true` / `false`, e.g. `open` / `closed`
-
-
 
 **Version 1.9.0**
 - Added Panic button
