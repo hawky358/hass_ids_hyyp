@@ -83,6 +83,8 @@ IDS Hyyp integration for Home Assistant
             - *It's recommended you use the `sensor.[site]_ids_push_notifications` if you need "live" data*   
             - *You should handle any home assistant triggers with automations* 
             - *Note multiple sensors can trigger the alarm at the same time if it's armed*
+            - `short_name` - This only shows the zone name of the sensor. In an update to Home assistant, it now automatically adds the full site name to the start of the friendly name which may not be wanted and breaks old setups. The `short_name` is just the zone name.
+    - `binary_sensor.[zone__name]_status` - This sensor reports the exact same status as the `violated` except that since it is a `binary_sensor` the sensor can be changed in the UI to a `door` or `motion` or `window` etc. which gives variations of `true` / `false`, e.g. `open` / `closed`
 
 - Creates a `binary_sensor.[zone__name]_status` which shows the current status of a specific zone.
     - This `binary_sensor` is effectively a duplicate of the `switch.[zone_name]` - `violated` attribute. As a `binary_sensor` the sensor can be changed in the UI to a `door` or `motion` or `window` etc. which gives variations of `true` / `false`, e.g. `open` / `closed`
@@ -96,6 +98,7 @@ IDS Hyyp integration for Home Assistant
 - IDS "Automations" / "Triggers".  
     *"Automations" is the term used in the IDS app to activate programmable outputs on the panel e.g. to open your gate or garage door. The IDS app also calls it "Triggers"*
     - Creates a `button.[site_name]_[automation_name]` button entity. This entity pushes the "automation" button similar to pushing the button in the IDS app.
+    - Additionally creates a `switch.[site_name]_[automation_name]_switch` If the trigger is set as a `switch` not a `pulse` in the IDS app / panel. This presents the latching switch as a switch in Home Assistant. This switch shows on/off and can toggle the state. The `button.[site_name]_[automation_name]` also exists and will toggle the state.
 
 - Panic Button
     - Create a `button.[site]_panic_button` button entity. This is a panic button.
@@ -210,6 +213,9 @@ Support, updates, bugfixes, features, etc. will be limited, but I will help wher
 ---
 # Changelog:
 
+**Version 1.11-b1**
+
+- Added a `switch.[site_name]_[automation_name]_switch`. If the IDS automation/trigger is set as a `switch` not a `pulse` in the IDS app / panel. This presents the latching switch as a switch in Home assistant. This switch shows on/off and can toggle the state. The `button.[site_name]_[automation_name]` also exists and will toggle the state.
 
 **Version 1.10**
 - Added attribute `short_name` to `switch.[zone_name]`, which only shows the zone name. After a recent update to Home assistant, it now automatically adds the site name to the start of the friendly name which may not be wanted. The `short_name` is just the zone name.
