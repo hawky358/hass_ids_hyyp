@@ -213,6 +213,10 @@ Support, updates, bugfixes, features, etc. will be limited, but I will help wher
 ---
 # Changelog:
 
+**Version 1.11-b3**
+
+- Modified the underlying firebase API to fix the registration and push notification errors cause by google update
+
 **Version 1.11-b1**
 
 - Added a `switch.[site_name]_[automation_name]_switch`. If the IDS automation/trigger is set as a `switch` not a `pulse` in the IDS app / panel. This presents the latching switch as a switch in Home assistant. This switch shows on/off and can toggle the state. The `button.[site_name]_[automation_name]` also exists and will toggle the state.
