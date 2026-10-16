@@ -213,9 +213,10 @@ Support, updates, bugfixes, features, etc. will be limited, but I will help wher
 ---
 # Changelog:
 
-**Version 1.11-b6**
+**Version 1.11-b7**
 
 - Incorporated fixes from filament-dm for FCM push notifications
+- Incorporated fix into main API since firebase is abandoned.
 
 **Version 1.11-b3**
 
