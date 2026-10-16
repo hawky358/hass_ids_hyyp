@@ -1,11 +1,11 @@
 {
   "domain": "ids_hyyp",
   "name": "IDS Hyyp (hawkMod)",
-  "version": "1.11.0-b7",
+  "version": "1.11.0-b8",
   "documentation": "https://github.com/hawky358/hass_ids_hyyp",
   "integration_type": "hub",
   "codeowners": ["@hawky358"],
-  "requirements": ["pyhyypapihawkmod==1.6.0"],
+  "requirements": ["pyhyypapihawkmod==1.6.1"],
   "config_flow": true,
   "iot_class": "cloud_polling",
   "loggers": ["custom_components.ids_hyyp"]
