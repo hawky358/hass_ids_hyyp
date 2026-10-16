@@ -213,6 +213,10 @@ Support, updates, bugfixes, features, etc. will be limited, but I will help wher
 ---
 # Changelog:
 
+**Version 1.11-b6**
+
+- Incorporated fixes from filament-dm for FCM push notifications
+
 **Version 1.11-b3**
 
 - Modified the underlying firebase API to fix the registration and push notification errors cause by google update
