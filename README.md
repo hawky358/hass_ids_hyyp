@@ -98,7 +98,7 @@ IDS Hyyp integration for Home Assistant
 - IDS "Automations" / "Triggers".  
     *"Automations" is the term used in the IDS app to activate programmable outputs on the panel e.g. to open your gate or garage door. The IDS app also calls it "Triggers"*
     - Creates a `button.[site_name]_[automation_name]` button entity. This entity pushes the "automation" button similar to pushing the button in the IDS app.
-    - Additionally creates a `switch.[site_name]_[automation_name]_switch` If the trigger is set as a `switch` not a `pulse` in the IDS app / panel. This presents the latching switch as a switch in Home Assistant. This switch shows on/off and can toggle the state. The `button.[site_name]_[automation_name]` also exists and will toggle the state.
+    - Additionally creates a `switch.[site_name]_[automation_name]_switch` if the trigger is set as a `switch` not a `pulse` in the IDS app / panel. This presents the latching switch as a switch in Home Assistant. This switch shows on/off and can toggle the state. The `button.[site_name]_[automation_name]` for that switch exists and will toggle the state.
 
 - Panic Button
     - Create a `button.[site]_panic_button` button entity. This is a panic button.
@@ -213,17 +213,11 @@ Support, updates, bugfixes, features, etc. will be limited, but I will help wher
 ---
 # Changelog:
 
-**Version 1.11-b7**
 
-- Incorporated fixes from filament-dm for FCM push notifications
-- Incorporated fix into main API since firebase is abandoned.
+**Version 1.12**
+- Fixed an issue where the push notifications would fail and shutdown under certain circumstances
 
-**Version 1.11-b3**
-
-- Modified the underlying firebase API to fix the registration and push notification errors cause by google update
-
-**Version 1.11-b1**
-
+**Version 1.11**
 - Added a `switch.[site_name]_[automation_name]_switch`. If the IDS automation/trigger is set as a `switch` not a `pulse` in the IDS app / panel. This presents the latching switch as a switch in Home assistant. This switch shows on/off and can toggle the state. The `button.[site_name]_[automation_name]` also exists and will toggle the state.
 
 **Version 1.10**
