@@ -214,10 +214,10 @@ Support, updates, bugfixes, features, etc. will be limited, but I will help wher
 # Changelog:
 
 
-**Version 1.12**
+**Version 1.11.1**
 - Fixed an issue where the push notifications would fail and shutdown under certain circumstances
 
-**Version 1.11**
+**Version 1.11.0**
 - Added a `switch.[site_name]_[automation_name]_switch`. If the IDS automation/trigger is set as a `switch` not a `pulse` in the IDS app / panel. This presents the latching switch as a switch in Home assistant. This switch shows on/off and can toggle the state. The `button.[site_name]_[automation_name]` also exists and will toggle the state.
 
 **Version 1.10**
